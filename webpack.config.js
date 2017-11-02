@@ -30,6 +30,10 @@ module.exports = {
                     use: 'css-loader',
                 }),
             },
+            {
+                tst: /\.(png|jpg|gif)$/,
+                use: 'file-loader',
+            }
         ],
     },
     resolve: {
