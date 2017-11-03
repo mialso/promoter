@@ -1,6 +1,7 @@
 'use strict';
 
 const path = require('path');
+const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
@@ -48,6 +49,11 @@ module.exports = {
         ],
     },
     plugins: [
+        new webpack.DefinePlugin({
+            'process.env': {
+                'BUILD_ENV': JSON.stringify(process.env.BUILD_ENV),
+            },
+        }),
         new HtmlWebpackPlugin({
             template: path.join(paths.STATIC, 'index.html'),
         }),

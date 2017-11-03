@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "webpack-dev-server",
+    "dev": "cross-env BUILD_ENV=development webpack-dev-server",
     "build": "webpack"
   },
   "author": "mialso",
@@ -16,6 +16,7 @@
     "babel-preset-env": "1.6.1",
     "babel-preset-react": "6.24.1",
     "copy-webpack-plugin": "4.2.0",
+    "cross-env": "5.1.1",
     "css-loader": "0.28.7",
     "extract-text-webpack-plugin": "3.0.2",
     "html-webpack-plugin": "2.30.1",
@@ -24,6 +25,8 @@
   },
   "dependencies": {
     "react": "16.0.0",
-    "react-dom": "16.0.0"
+    "react-dom": "16.0.0",
+    "react-redux": "5.0.6",
+    "redux": "3.7.2"
   }
 }
