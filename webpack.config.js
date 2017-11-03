@@ -3,6 +3,7 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 // path constants
 const paths = {
     BUILD: path.resolve(__dirname, 'build'),
@@ -27,11 +28,14 @@ module.exports = {
             {
                 test: /\.css$/,
                 loader: ExtractTextPlugin.extract({
-                    use: 'css-loader',
+                    use: {
+                        loader: 'css-loader',
+                        options: { url: false },
+                    },
                 }),
             },
             {
-                tst: /\.(png|jpg|gif)$/,
+                test: /\.(png|jpg|gif)$/,
                 use: 'file-loader',
             }
         ],
@@ -44,8 +48,16 @@ module.exports = {
             template: path.join(paths.STATIC, 'index.html'),
         }),
         new ExtractTextPlugin('style.bundle.css'),
+        new CopyWebpackPlugin([
+            {
+                from: path.join(paths.STATIC, 'img'),
+                to: path.join(paths.BUILD, 'img'),
+                transform: (content, path) => content,
+            },
+        ]),
     ],
     devServer: {
+        contentBase: paths.STATIC,
         port: 5999,
     },
     devtool: 'cheap-eval-source-map',
