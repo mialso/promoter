@@ -3,9 +3,9 @@ const initialState = {
 };
 
 export default (state = initialState, action) => {
-    const { type, response, payload } = action;
-    
+    const { type } = action;
+
     switch (type) {
-        default: return state;
+    default: return state;
     }
-}
+};

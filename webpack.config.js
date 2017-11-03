@@ -12,7 +12,7 @@ const paths = {
     STATIC: path.resolve(__dirname, 'static'),
 };
 module.exports = {
-    entry: path.join(paths.JS, 'entry.js'),
+    entry: path.join(paths.JS, 'entry.jsx'),
     output: {
         path: paths.BUILD,
         filename: 'app.bundle.js',
