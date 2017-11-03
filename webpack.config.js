@@ -67,6 +67,7 @@ module.exports = {
         ]),
     ],
     devServer: {
+        historyApiFallback: true,
         contentBase: paths.STATIC,
         port: 5999,
     },
