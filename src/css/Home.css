@@ -1,0 +1,9 @@
+.Home form {
+    display: flex;
+    flex-direction: column;
+}
+
+.Home input {
+    display: block;
+    width: 100%;
+}
