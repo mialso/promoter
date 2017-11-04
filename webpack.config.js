@@ -70,6 +70,9 @@ module.exports = {
         historyApiFallback: true,
         contentBase: paths.STATIC,
         port: 5999,
+        proxy: {
+            '/v1/search': 'http://localhost:4999',
+        },
     },
     devtool: 'cheap-eval-source-map',
 };

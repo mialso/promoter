@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "cross-env BUILD_ENV=development webpack-dev-server",
+    "client": "cross-env BUILD_ENV=development webpack-dev-server",
+    "dev": "concurrently \"node server/server.js\" \"npm run client\"",
     "build": "webpack",
     "lint": "eslint --ext .js --ext .jsx src"
   },
@@ -17,6 +18,7 @@
     "babel-preset-airbnb": "2.4.0",
     "babel-preset-env": "1.6.1",
     "babel-preset-react": "6.24.1",
+    "concurrently": "3.5.0",
     "copy-webpack-plugin": "4.2.0",
     "cross-env": "5.1.1",
     "css-loader": "0.28.7",
@@ -25,6 +27,7 @@
     "eslint-plugin-import": "2.8.0",
     "eslint-plugin-jsx-a11y": "6.0.2",
     "eslint-plugin-react": "7.4.0",
+    "express": "4.16.2",
     "extract-text-webpack-plugin": "3.0.2",
     "html-webpack-plugin": "2.30.1",
     "webpack": "3.8.1",
