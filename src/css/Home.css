@@ -3,7 +3,26 @@
     flex-direction: column;
 }
 
+.Home-label {
+    padding: 15px 0px;
+}
+
 .Home input {
     display: block;
     width: 100%;
+    height: 3em;
+    border: none;
+    background-color: #eee;
+    text-indent: 10px;
+}
+
+.Home input:focus {
+    outline-color: #999;
+}
+
+.Home button {
+    height: 3em;
+    margin: 20px 0px;
+    background-color: #003d5c;
+    color: #eee;
 }

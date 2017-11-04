@@ -6,8 +6,8 @@ export const searchSubmitAction = searchPayload => ({
         callAPI: true,
         endpoint: '/v1/search/',
         params: {
-            name: searchPayload.businessName || undefined,
-            zipcode: searchPayload.locationZIP || undefined,
+            name: searchPayload.name || undefined,
+            zipcode: searchPayload.zipcode || undefined,
         },
     },
 });
