@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import HomeLabelInput from './HomeLabelInput';
+import Spinner from './common/Spinner';
 
 class SearchForm extends Component {
     static propTypes = {
@@ -93,7 +94,14 @@ class SearchForm extends Component {
                         onBlur={this.handleBlur}
                     />
                 </label>
-                <button type="sumbit" disabled={!this.isValid()}>Search</button>
+                <Spinner
+                    model="search"
+                    size={20}
+                    applyStyle={{ height: '30px' }}
+                />
+                <button type="sumbit" disabled={!this.isValid()}>
+                    Search
+                </button>
             </form>
         );
     }

@@ -30,7 +30,8 @@
 
 .Home button {
     height: 3em;
-    margin: 20px 0px;
+    margin-top: 10px;
+    margin-bottom: 20px;
     background-color: #003d5c;
     color: #eee;
 }
