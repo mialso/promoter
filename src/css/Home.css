@@ -14,6 +14,14 @@
     border: none;
     background-color: #eee;
     text-indent: 10px;
+    border-bottom: 2px solid #999;
+}
+
+.Home input[name="locationZIP"] {
+    background-image: url(img/location.svg);
+    background-repeat: no-repeat;
+    text-indent: 40px;
+    background-position: 5px;
 }
 
 .Home input:focus {
@@ -25,4 +33,8 @@
     margin: 20px 0px;
     background-color: #003d5c;
     color: #eee;
+}
+
+.Home button:disabled {
+    background-color: #999999;
 }
