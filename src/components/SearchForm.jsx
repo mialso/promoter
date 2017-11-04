@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 class SearchForm extends Component {
+    static propTypes = {
+        submitAction: PropTypes.func.isRequired,
+    }
     constructor(props) {
         super(props);
         this.state = {
@@ -11,7 +15,7 @@ class SearchForm extends Component {
     }
     handleSubmit = (e) => {
         e.preventDefault();
-        console.log('submit %s', JSON.stringify(this.state));
+        this.props.submitAction(this.state);
     }
     handleInputChange = (e) => {
         const newState = {};
