@@ -43,6 +43,9 @@ body #app {
 
 .App-headLogo {
     min-height: 140px;
+    font-size: 2em;
+    text-decoration: underline;
+    color: #fff;
 }
 
 .App-main {
