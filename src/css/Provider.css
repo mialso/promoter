@@ -1,14 +1,22 @@
+.ProviderResults-header {
+    display: flex;
+    justify-content: center;
+}
+
 .Provider-icon {
     width: 70px;
     height: 70px;
     background-size: contain;
 }
+
 .Provider-icon.GOOGLE {
     background-image: url(img/icons8-google.svg);
 }
+
 .Provider-icon.FACEBOOK {
     background-image: url(img/facebook.svg);
 }
+
 .Provider-icon.YELP {
     border-radius: 15px;
     background-image: url(img/yelp_fullcolor.png);
