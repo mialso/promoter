@@ -27,11 +27,13 @@ class SearchResultsContainer extends Component {
         if (!this.props.match.params) return false;
         return this.props.match.params.zipcode && this.props.match.params.name;
     }
+    hasPromotedItems = () => this.props.searchProviders.valueSeq()
+        .reduce((acc, provider) => provider.get('itemToPromote') || acc, false)
     render() {
         const providersArray = this.props.searchProviders.entrySeq().toArray();
         return (
             <div className="Search">
-                <h2>Choose you Business</h2>
+                <h2>Choose your Business</h2>
                 {
                     this.isDataAvailable() ?
                         <div className="Providers">
@@ -40,7 +42,7 @@ class SearchResultsContainer extends Component {
                                     <ProviderResults
                                         key={itemsArr[0]}
                                         providerName={itemsArr[0]}
-                                        itemIds={itemsArr[1]}
+                                        itemIds={itemsArr[1].get('itemIds')}
                                     />
                                 ))
                             }
@@ -52,11 +54,17 @@ class SearchResultsContainer extends Component {
                             messages
                         />
                 }
-                <div className="Search-bottomLinks">
-                    <span>More Results</span>
-                    <span>or</span>
-                    <Link to="/" >Search again</Link>
-                </div>
+                {
+                    this.hasPromotedItems() ?
+                        <div className="Search-bottomLinks">
+                            <Link to="/signup">Next</Link>
+                        </div> :
+                        <div className="Search-bottomLinks">
+                            <span>More Results</span>
+                            <span>or</span>
+                            <Link to="/" >Search again</Link>
+                        </div>
+                }
             </div>
         );
     }
@@ -70,10 +78,10 @@ SearchResultsContainer.propTypes = {
     searchSubmit: PropTypes.func.isRequired,
 };
 
-function mapStateToProps({ search }) {
+function mapStateToProps({ search, providers }) {
     return {
         searchResults: search.getIn(['results', 'dataIds']),
-        searchProviders: search.get('providers'),
+        searchProviders: providers,
     };
 }
 
