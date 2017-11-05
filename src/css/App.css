@@ -35,6 +35,8 @@ body #app {
     display: flex;
     align-items: center;
     justify-content: flex-end;
+    color: #83a3c6;
+    text-decoration: underline;
 }
 
 .App-topLinks p {
