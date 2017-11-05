@@ -16,6 +16,7 @@ module.exports = {
     output: {
         path: paths.BUILD,
         filename: 'app.bundle.js',
+        publicPath: '/',
     },
     module: {
         rules: [
@@ -36,17 +37,13 @@ module.exports = {
                 }),
             },
             {
-                test: /\.(png|jpg|gif)$/,
+                test: /\.(png|jpg|gif|svg)$/,
                 use: 'file-loader',
             }
         ],
     },
     resolve: {
         extensions: ['.js', '.jsx'],
-        modules: [
-            'src',
-            'node_modules',
-        ],
     },
     plugins: [
         new webpack.DefinePlugin({

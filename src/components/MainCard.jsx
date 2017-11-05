@@ -10,7 +10,7 @@ export default function MainCard() {
         <div className="MainCard">
             <div className="MainCard-inner">
                 <Route exact path="/" component={Home} />
-                <Route path="/search" component={SearchResults} />
+                <Route path="/search/:zipcode/:name" component={SearchResults} />
             </div>
         </div>
     );

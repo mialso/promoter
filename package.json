@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "client": "cross-env BUILD_ENV=development webpack-dev-server",
     "dev": "concurrently \"node server/server.js\" \"npm run client\"",
-    "build:dev": "webpack",
+    "build:dev": "cross-env BUILD_ENV=development webpack",
     "lint": "eslint --ext .js --ext .jsx src"
   },
   "author": "mialso",

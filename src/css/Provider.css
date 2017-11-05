@@ -10,6 +10,7 @@
     background-image: url(img/facebook.svg);
 }
 .Provider-icon.YELP {
+    border-radius: 15px;
     background-image: url(img/yelp_fullcolor.png);
     background-color: #d32323;
 }

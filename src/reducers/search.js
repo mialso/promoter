@@ -9,7 +9,7 @@ const initialState = {
 };
 
 function getProvidersData(itemsData) {
-    return itemsData.reduce((acc, item) =>  {
+    return itemsData.reduce((acc, item) => {
         // if no reivew type given don't include this item
         const provider = item.reviewType;
         if (!provider) return acc;
