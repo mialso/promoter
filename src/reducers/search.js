@@ -1,12 +1,17 @@
+import Immutable from 'immutable';
 import {
     SEARCH_SUBMIT,
+    SEARCH_CLEANUP,
 } from '../actions/search';
 import { SUCCESS } from '../constants/meta';
 
-const initialState = {
-    results: {},
-    providers: {},
-};
+const initialState = Immutable.Map({
+    results: Immutable.Map({
+        dataIds: Immutable.List(),
+        params: Immutable.Map(),
+    }),
+    providers: Immutable.Map(),
+});
 
 function getProvidersData(itemsData) {
     return itemsData.reduce((acc, item) => {
@@ -28,13 +33,22 @@ export default (state = initialState, action) => {
     case SEARCH_SUBMIT + SUCCESS: {
         if (Array.isArray(payload) && payload.length > 0) {
             const results = {
-                data: payload.filter(item => typeof item.id === 'string' && item.id.length > 0),
+                dataIds: payload.map(item => item.id),
                 params: action.meta.params,
             };
-            const providers = getProvidersData(results.data);
-            return Object.assign({}, state, { results, providers });
+            const providers = getProvidersData(payload);
+            return state.merge({
+                results: state.get('results').merge(results),
+                providers: state.get('providers').merge(providers),
+            });
         }
         return state;
+    }
+    case SEARCH_CLEANUP: {
+        return state.merge({
+            dataIds: Immutable.List(),
+            params: Immutable.Map(),
+        });
     }
     default: return state;
     }

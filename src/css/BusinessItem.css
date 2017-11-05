@@ -12,6 +12,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    font-weight: bold;
 }
 
 .BusinessItem-checkbox {
@@ -38,6 +39,7 @@
     padding:0;
     border:0;
 }
+
 .BusinessItem-checkbox input[type=checkbox] + .Checkbox-styleLabel {
     padding-left:35px;
     height:30px; 
@@ -49,9 +51,11 @@
     vertical-align:middle;
     cursor:pointer;
 }
+
 .BusinessItem-checkbox input[type=checkbox]:checked + .Checkbox-styleLabel {
     background-position: 0 -30px;
 }
+
 .BusinessItem-checkbox .Checkbox-styleLabel {
     background-image:url(img/csscheckbox.png);
     -webkit-touch-callout: none;

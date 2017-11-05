@@ -1,4 +1,5 @@
 export const SEARCH_SUBMIT = 'SEARCH_SUBMIT';
+export const SEARCH_CLEANUP = 'SEARCH_CLEANUP';
 
 export const searchSubmitAction = searchPayload => ({
     type: SEARCH_SUBMIT,
@@ -10,4 +11,8 @@ export const searchSubmitAction = searchPayload => ({
             zipcode: searchPayload.zipcode || undefined,
         },
     },
+});
+
+export const searchCleanUpAction = () => ({
+    type: SEARCH_CLEANUP,
 });

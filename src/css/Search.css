@@ -6,3 +6,16 @@
 .Search h2 {
     text-align: center;
 }
+
+.Search-bottomLinks {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.Search-bottomLinks span + span {
+    margin: 0px 10px;
+    text-decoration: none;
+}
+.Search-bottomLinks span {
+    text-decoration: underline;
+}

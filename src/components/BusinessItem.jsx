@@ -22,41 +22,45 @@ function getNubmersArray(number) {
     return result;
 }
 
-const BusinessItem = ({ itemData }) => (
-    <div className="BusinessItem">
-        <div className="BusinessItem-checkbox">
-            <label htmlFor={getCheckboxId(itemData.id)} >
-                <input id={getCheckboxId(itemData.id)} type="checkbox" />
-                <div className="Checkbox-styleLabel" />
-            </label>
-        </div>
-        <div className="BusinessItem-description">
-            <div className="BusinessItem-descriptionHeader" >
-                <div className="BusinessItem-name">
-                    { itemData.name }
-                </div>
-                <div className="BusinessItem-rating">
-                    {
-                        itemData.rating > 0 && getNubmersArray(itemData.rating)
-                            .map(numData => (
-                                <Star key={numData.key} size={15} number={numData.num} />
-                            ))
-                    }
-                </div>
+const BusinessItem = ({ itemImmutable }) => {
+    if (!(itemImmutable && itemImmutable.size > 0)) return null;
+    const itemData = itemImmutable.toJS();
+    return (
+        <div className="BusinessItem">
+            <div className="BusinessItem-checkbox">
+                <label htmlFor={getCheckboxId(itemData.id)} >
+                    <input id={getCheckboxId(itemData.id)} type="checkbox" />
+                    <div className="Checkbox-styleLabel" />
+                </label>
             </div>
-            <div>{ itemData.phone }</div>
-            <div>{ itemData.address1 }</div>
+            <div className="BusinessItem-description">
+                <div className="BusinessItem-descriptionHeader" >
+                    <div className="BusinessItem-name">
+                        { itemData.name }
+                    </div>
+                    <div className="BusinessItem-rating">
+                        {
+                            itemData.rating > 0 && getNubmersArray(itemData.rating)
+                                .map(numData => (
+                                    <Star key={numData.key} size={15} number={numData.num} />
+                                ))
+                        }
+                    </div>
+                </div>
+                <div>{ itemData.phone }</div>
+                <div>{ itemData.address1 }</div>
+            </div>
         </div>
-    </div>
-);
-
-BusinessItem.propTypes = {
-    itemData: PropTypes.instanceOf(Object).isRequired,
+    );
 };
 
-function mapStateToProps({ search }, { itemId }) {
+BusinessItem.propTypes = {
+    itemImmutable: PropTypes.instanceOf(Object).isRequired,
+};
+
+function mapStateToProps({ businessItems }, { itemId }) {
     return {
-        itemData: search.results.data.find(item => item.id === itemId) || {},
+        itemImmutable: businessItems.getIn(['byId', itemId]),
     };
 }
 

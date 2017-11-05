@@ -1,17 +1,23 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { searchSubmitAction } from '../actions/search';
+import { searchSubmitAction, searchCleanUpAction } from '../actions/search';
 import SearchForm from './SearchForm';
 
 import '../css/Home.css';
 
 class Home extends Component {
+    componentDidMount() {
+        // clean up search results
+        this.props.searchCleanUp();
+        this.props.history.replace('/');
+    }
     componentWillReceiveProps(newProps) {
         if (newProps.searchResults !== this.props.searchResults) {
-            if (newProps.searchResults.data && newProps.searchResults.data.length > 0) {
-                const { params } = newProps.searchResults;
-                newProps.history.push(`/search/${params.zipcode}/${params.name}`);
+            // if new search results available -> go to searh route and display them
+            if (newProps.searchResults.get('dataIds').size > 0) {
+                const params = newProps.searchResults.get('params');
+                newProps.history.push(`/search/${params.get('zipcode')}/${params.get('name')}`);
             }
         }
     }
@@ -26,13 +32,15 @@ class Home extends Component {
 }
 
 Home.propTypes = {
+    history: PropTypes.instanceOf(Object).isRequired,
     searchSubmit: PropTypes.func.isRequired,
+    searchCleanUp: PropTypes.func.isRequired,
     searchResults: PropTypes.instanceOf(Object).isRequired,
 };
 
 function mapStateToProps({ search }) {
     return {
-        searchResults: search.results,
+        searchResults: search.get('results'),
     };
 }
 
@@ -40,5 +48,6 @@ export default connect(
     mapStateToProps,
     {
         searchSubmit: searchSubmitAction,
+        searchCleanUp: searchCleanUpAction,
     },
 )(Home);

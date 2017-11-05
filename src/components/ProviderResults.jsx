@@ -6,6 +6,7 @@ import '../css/Provider.css';
 
 const ProviderResults = ({ providerName, itemIds }) => {
     const providerIconClass = `Provider-icon ${providerName}`;
+    if (!(itemIds.size > 0)) return null;
     return (
         <div className="ProviderResults">
             <div className="ProviderResults-header">
@@ -13,7 +14,7 @@ const ProviderResults = ({ providerName, itemIds }) => {
             </div>
             <div className="ProviderResults-grid">
                 {
-                    itemIds.map(itemId => <BusinessItem key={itemId} itemId={itemId} />)
+                    itemIds.toArray().map(itemId => <BusinessItem key={itemId} itemId={itemId} />)
                 }
             </div>
         </div>
@@ -22,7 +23,7 @@ const ProviderResults = ({ providerName, itemIds }) => {
 
 ProviderResults.propTypes = {
     providerName: PropTypes.string.isRequired,
-    itemIds: PropTypes.instanceOf(Array).isRequired,
+    itemIds: PropTypes.instanceOf(Object).isRequired,
 };
 
 export default ProviderResults;

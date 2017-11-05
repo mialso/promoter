@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import ProviderResults from './ProviderResults';
 import Spinner from './common/Spinner';
 import { searchSubmitAction } from '../actions/search';
@@ -10,14 +11,24 @@ import '../css/Search.css';
 class SearchResultsContainer extends Component {
     componentDidMount() {
         if (!this.isDataAvailable()) {
-            this.props.searchSubmit(this.props.match.params);
+            // no data available
+            if (this.isUrlParamsAvailable()) {
+                // but we have params - let's make request
+                this.props.searchSubmit(this.props.match.params);
+            } else {
+                // no data or url params -> go Home
+                this.props.history.push('/');
+            }
         }
     }
-    isDataAvailable = () => {
-        const { searchResults } = this.props;
-        return searchResults.data && (searchResults.data.length > 0);
+    isDataAvailable = () => this.props.searchResults.size > 0
+    isUrlParamsAvailable = () => {
+        if (!this.props.match) return false;
+        if (!this.props.match.params) return false;
+        return this.props.match.params.zipcode && this.props.match.params.name;
     }
     render() {
+        const providersArray = this.props.searchProviders.entrySeq().toArray();
         return (
             <div className="Search">
                 <h2>Choose you Business</h2>
@@ -25,14 +36,13 @@ class SearchResultsContainer extends Component {
                     this.isDataAvailable() ?
                         <div className="Providers">
                             {
-                                Object.keys(this.props.searchProviders)
-                                    .map(key => (
-                                        <ProviderResults
-                                            key={key}
-                                            providerName={key}
-                                            itemIds={this.props.searchProviders[key]}
-                                        />
-                                    ))
+                                providersArray.map(itemsArr => (
+                                    <ProviderResults
+                                        key={itemsArr[0]}
+                                        providerName={itemsArr[0]}
+                                        itemIds={itemsArr[1]}
+                                    />
+                                ))
                             }
                         </div>
                         : <Spinner
@@ -42,12 +52,18 @@ class SearchResultsContainer extends Component {
                             messages
                         />
                 }
+                <div className="Search-bottomLinks">
+                    <span>More Results</span>
+                    <span>or</span>
+                    <Link to="/" >Search again</Link>
+                </div>
             </div>
         );
     }
 }
 
 SearchResultsContainer.propTypes = {
+    history: PropTypes.instanceOf(Object).isRequired,
     match: PropTypes.instanceOf(Object).isRequired,
     searchResults: PropTypes.instanceOf(Object).isRequired,
     searchProviders: PropTypes.instanceOf(Object).isRequired,
@@ -56,8 +72,8 @@ SearchResultsContainer.propTypes = {
 
 function mapStateToProps({ search }) {
     return {
-        searchResults: search.results,
-        searchProviders: search.providers,
+        searchResults: search.getIn(['results', 'dataIds']),
+        searchProviders: search.get('providers'),
     };
 }
 
