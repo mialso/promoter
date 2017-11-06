@@ -1,10 +1,17 @@
-.BusinessItem {
+.Item {
     margin: 10px;
     padding: 5px;
     background-color: #eee;
     border-bottom: 2px solid #999;
     border-right: 1px solid #999;
+}
+
+.BusinessItem {
     display: flex;
+}
+
+.BusinessItem-name {
+    font-weight: bold;
 }
 
 .BusinessItem-descriptionHeader {
@@ -12,7 +19,6 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    font-weight: bold;
 }
 
 .BusinessItem-checkbox {

@@ -3,9 +3,12 @@
     justify-content: center;
 }
 
-.Provider-icon {
+.ProviderResults .Provider-icon {
     width: 70px;
     height: 70px;
+}
+
+.Provider-icon {
     background-size: contain;
 }
 

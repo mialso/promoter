@@ -35,10 +35,10 @@ class BusinessItem extends Component {
         if (!(itemImmutable && itemImmutable.size > 0)) return null;
         const itemData = itemImmutable.toJS();
         return (
-            <div className="BusinessItem">
+            <div className="Item BusinessItem">
                 <div className="BusinessItem-checkbox">
                     <label htmlFor={getCheckboxId(itemData.id)}>
-                        <input id={getCheckboxId(itemData.id)} type="checkbox" checked={isPromoted} onClick={this.promoteItem} />
+                        <input id={getCheckboxId(itemData.id)} type="checkbox" checked={isPromoted} onChange={this.promoteItem} />
                         <div className="Checkbox-styleLabel" />
                     </label>
                 </div>

@@ -1,0 +1,32 @@
+.SignUp {
+    display: flex;
+    flex-direction: column;
+}
+
+.SignUp-header {
+    display: flex;
+    justify-content: center;
+}
+
+.SignUp-bottomLink {
+    display: flex;
+    justify-content: center;
+}
+
+.SignUp-content {
+    display: flex;
+    justify-content: center;
+}
+
+.SignUp .PromotedItems {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-width: 200px;
+}
+
+.SignUp .Auth0Container {
+    border: 1px solid black;
+    min-width: 300px;
+    min-height:500px;
+}

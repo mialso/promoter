@@ -1,0 +1,24 @@
+.PromotedItem {
+    display: flex;
+}
+
+.PromotedItem-providerLogo {
+    display: flex;
+    align-items: center;
+    margin: 10px;
+}
+
+.PromotedItem-businessItem {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.PromotedItem .Provider-icon {
+    width: 40px;
+    height: 40px;
+}
+
+.PromotedItem .Provider-icon.YELP {
+    border-radius: 5px;
+}
